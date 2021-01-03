@@ -1,34 +1,34 @@
-const updateComments = (state, action) => {
+const updateItems = (state, action) => {
     if (state === undefined) {
         return {
-            comments: [],
+            items: [],
             loading: false,
             error: null
         }
     }
 
     switch (action.type) {
-        case 'COMMENTS_FETCH_REQUEST':
+        case 'ITEMS_FETCH_REQUEST':
             return {
-                comments: [],
+                items: [],
                 loading: true,
                 error: false
             };
-        case 'COMMENTS_FETCH_SUCCESS':
+        case 'ITEMS_FETCH_SUCCESS':
             return {
-                comments: action.payload,
+                items: action.payload,
                 loading: false,
                 error: null
             };
-        case 'COMMENTS_FETCH_ERROR':
+        case 'ITEMS_FETCH_ERROR':
             return {
-                comments: [],
+                items: [],
                 loading: false,
                 error: true
             };
         default:
-            return state.comments;
-    }
+            return state.items;
+        }
 }
 
-export default updateComments;
+export default updateItems;
