@@ -27,13 +27,12 @@ const App = () => {
                                 <Sidebar />
                             </div>
                             <div className="col-lg-9">
-                                <HomePage />
-                                {/* <Router>
+                                <Router>
                                     <Switch>
                                         <Route path="/" component={ HomePage } exact />
-                                         Route path="/cart" component={ CartPage } exact />
+                                        {/* <Route path="/cart" component={ CartPage } exact /> */}
                                     </Switch>
-                                </Router> */}
+                                </Router>
                             </div>
                         </div>
                     </div>

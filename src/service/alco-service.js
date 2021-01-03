@@ -21,4 +21,5 @@ export default class AlcoService {
           
         return await res.json();
     };
+    
 }

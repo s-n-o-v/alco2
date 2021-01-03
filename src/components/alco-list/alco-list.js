@@ -1,113 +1,60 @@
 import React, { Component } from 'react';
-// import ErrorIndicator from '../error-indicator';
-// import { connect } from 'react-redux';
-// import { withBookstoreService } from '../hoc';
+import ErrorIndicator from '../error-indicator';
+import { connect } from 'react-redux';
+import { withAlcoService } from '../hoc';
 
-// import Spinner from '../spinner';
+import { fetchItems } from '../../actions';
+import AlcoListItem from '../alco-list-item';
+import Spinner from '../spinner';
 
 import './alco-list.css';
 
 
-const AlcoList = () => {
+const AlcoList = ({ items, onSelect }) => {
     return (
         <div className="row">
-            <div className="col-lg-4 col-md-6 mb-4">
-                <div className="card h-100">
-                    <a href="#"><img className="card-img-top" src="http://placehold.it/700x400" alt="" /></a>
-                    <div className="card-body">
-                        <h4 className="card-title">
-                            <a href="#">Item One</a>
-                        </h4>
-                        <h5>$24.99</h5>
-                        <p className="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
-                    </div>
-                    <div className="card-footer">
-                        <small className="text-muted">★ ★ ★ ★ ☆</small>
-                    </div>
-                </div>
-            </div>
-            <div className="col-lg-4 col-md-6 mb-4">
-                <div className="card h-100">
-                    <a href="#"><img className="card-img-top" src="http://placehold.it/700x400" alt="" /></a>
-                    <div className="card-body">
-                        <h4 claclassNamess="card-title">
-                        <a href="#">Item Two</a>
-                        </h4>
-                        <h5>$24.99</h5>
-                        <p className="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur! Lorem ipsum dolor sit amet.</p>
-                    </div>
-                    <div className="card-footer">
-                        <small className="text-muted">★ ★ ★ ★ ☆</small>
-                    </div>
-                </div>
-            </div>
-
-            <div className="col-lg-4 col-md-6 mb-4">
-                <div className="card h-100">
-                    <a href="#"><img className="card-img-top" src="http://placehold.it/700x400" alt="" /></a>
-                    <div className="card-body">
-                        <h4 className="card-title">
-                        <a href="#">Item Three</a>
-                        </h4>
-                        <h5>$24.99</h5>
-                        <p className="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
-                    </div>
-                    <div className="card-footer">
-                        <small className="text-muted">★ ★ ★ ★ ☆</small>
-                    </div>
-                </div>
-            </div>
-
-            <div className="col-lg-4 col-md-6 mb-4">
-                <div class="card h-100">
-                    <a href="#"><img className="card-img-top" src="http://placehold.it/700x400" alt="" /></a>
-                    <div className="card-body">
-                        <h4 className="card-title">
-                        <a href="#">Item Four</a>
-                        </h4>
-                        <h5>$24.99</h5>
-                        <p className="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
-                    </div>
-                    <div className="card-footer">
-                        <small className="text-muted">★ ★ ★ ★ ☆</small>
-                    </div>
-                </div>
-            </div>
-
-            <div className="col-lg-4 col-md-6 mb-4">
-                <div className="card h-100">
-                    <a href="#"><img className="card-img-top" src="http://placehold.it/700x400" alt="" /></a>
-                    <div className="card-body">
-                        <h4 className="card-title">
-                            <a href="#">Item Five</a>
-                        </h4>
-                        <h5>$24.99</h5>
-                        <p className="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur! Lorem ipsum dolor sit amet.</p>
-                    </div>
-                    <div className="card-footer">
-                        <small className="text-muted">★ ★ ★ ★ ☆</small>
-                    </div>
-                </div>
-            </div>
-
-            <div className="col-lg-4 col-md-6 mb-4">
-                <div className="card h-100">
-                    <a href="#"><img className="card-img-top" src="http://placehold.it/700x400" alt="" /></a>
-                    <div className="card-body">
-                        <h4 className="card-title">
-                            <a href="#">Item Six</a>
-                        </h4>
-                        <h5>$24.99</h5>
-                        <p className="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet numquam aspernatur!</p>
-                    </div>
-                    <div className="card-footer">
-                        <small className="text-muted">★ ★ ★ ★ ☆</small>
-                    </div>
-                </div>
-            </div>
-
+            {
+                items.map( (item) => {
+                    return (
+                        <AlcoListItem item={item} />
+                    );
+                })
+            }
         </div>
     );
 };
 
-export default AlcoList;
+class AlcoListContainer extends Component {
+    componentDidMount() {
+        this.props.fetchItems();
+    }
+
+    render() {
+        const { items, loading, error } = this.props;
+        if (loading) {
+            return <Spinner />;
+        }
+
+        if (error) {
+            return <ErrorIndicator />;
+        }
+        return <AlcoList items={items} />;
+    }
+}
+
+// export default AlcoList;
+const mapStateToProps = ({ items : { items, loading, error }}) => {
+    return { items, loading, error };
+};
+
+const mapDispatchToProps = (dispatch, ownProps) => {
+    const { alcoService } = ownProps;
+
+    return {
+        fetchItems: fetchItems(alcoService, dispatch)
+    };
+}
+
+export default withAlcoService()(
+    connect(mapStateToProps, mapDispatchToProps )(AlcoListContainer)
+    );
