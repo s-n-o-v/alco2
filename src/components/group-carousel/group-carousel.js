@@ -5,9 +5,9 @@ const GroupCarousel = () => {
     return (
         <div id="carouselExampleIndicators" className="carousel slide my-4" data-bs-ride="carousel">
             <ol className="carousel-indicators">
-                <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class=""></li>
-                <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" class=""></li>
-                <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" class="active"></li>
+                <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" className=""></li>
+                <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" className=""></li>
+                <li data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" className="active"></li>
             </ol>
             <div className="carousel-inner">
                 <div className="carousel-item">

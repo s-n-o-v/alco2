@@ -16,7 +16,7 @@ const AlcoList = ({ items, onSelect }) => {
             {
                 items.map( (item) => {
                     return (
-                        <AlcoListItem item={item} />
+                        <AlcoListItem key={item.id} item={item} />
                     );
                 })
             }
