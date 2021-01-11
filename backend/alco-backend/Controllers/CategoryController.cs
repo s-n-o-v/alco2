@@ -36,7 +36,7 @@
         {
             if (category == null || string.IsNullOrEmpty(category.Name))
             {
-                return NotFound();
+                return StatusCode(400);
             }
             try
             {
@@ -60,7 +60,6 @@
             return NotFound();
         }
 
-        
         [HttpPut("{id}"), HttpPost("{id}")] // POST, PUT: api/category/{id}
         public async Task<ActionResult> UpdateCategory(int id, [FromBody] Category category)
         {
