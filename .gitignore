@@ -22,3 +22,13 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .eslintcache
+/backend/alco-backend/bin/Debug/netcoreapp3.1
+/backend/.vs/backend
+/backend/alco-backend/obj
+/backend/alco-backend/Dtos
+/backend/alco-backend/Data
+/backend/alco-backend/Controllers/CommandsController.cs
+/backend/alco-data/bin/Debug/netcoreapp3.1
+/backend/alco-data/obj
+/backend/alco-model/bin/Debug/netstandard2.0
+/backend/alco-model/obj
