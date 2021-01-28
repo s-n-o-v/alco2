@@ -36,6 +36,8 @@ namespace alco_backend
                 s.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
             });
 
+            services.AddCors();
+
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
             services.AddScoped<IRepositoryContextFactory, RepositoryContextFactory>();
@@ -57,6 +59,7 @@ namespace alco_backend
 
             app.UseRouting();
 
+            app.UseCors(builder => builder.AllowAnyOrigin());
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

@@ -3,7 +3,6 @@ import React from 'react';
 import './spinner.css';
 
 const Spinner = () => {
-    console.log('spinner..');
     return (
         <div className="loadingio-spinner-interwind-i5lamvoew49">
             <div className="ldio-odjke2uxni">

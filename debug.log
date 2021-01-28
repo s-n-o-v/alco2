@@ -1,2 +1,6 @@
 [0103/173002.158:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
 [0103/181129.475:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
+[0113/184546.807:ERROR:directory_reader_win.cc(43)] FindFirstFile: Системе не удается найти указанный путь. (0x3)
+[0113/215431.168:ERROR:filesystem_win.cc(129)] GetFileAttributes C:\Users\snov\AppData\Local\Google\Chrome\User Data\Crashpad\attachments\9e3305da-0ed8-4bec-a5aa-1d048d25a6ec: Системе не удается найти указанный путь. (0x3)
+[0118/230154.043:ERROR:directory_reader_win.cc(43)] FindFirstFile: Системе не удается найти указанный путь. (0x3)
+[0128/225739.246:ERROR:directory_reader_win.cc(43)] FindFirstFile: Системе не удается найти указанный путь. (0x3)

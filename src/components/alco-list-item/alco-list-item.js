@@ -2,7 +2,7 @@ import React from 'react';
 import './alco-list-item.css';
 
 const AlcoListItem = ( { item, onSelect } ) => {
-    const { name, img, cat, descr, rate, total } = item;
+    const { name, img, cat, description, rate, total } = item;
     return (
         <div className="col-lg-4 col-md-6 mb-4" cat={cat}>
             <div className="card h-100">
@@ -11,7 +11,7 @@ const AlcoListItem = ( { item, onSelect } ) => {
                     <h4 className="card-title">
                         <a href="#">{name}</a>
                     </h4>
-                    <p className="card-text">{descr}</p>
+                    <p className="card-text">{description}</p>
                 </div>
                 <div className="card-footer">
                     <small className="text-muted">{showRate(rate)}</small>

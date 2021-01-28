@@ -8,12 +8,14 @@ import Footer from '../footer';
 import Sidebar from '../sidebar';
 import HomePage from '../pages/home-page';
 import AlcoService from '../../service/alco-service';
+import DummyService from '../../service/dummy-alco-service';
 import { AlcoServiceProvider } from '../alco-service-context'; 
 
 import store from '../../store';
 import './app.css';
 
-const alcoService = new AlcoService();
+// const alcoService = new AlcoService();
+const alcoService = new DummyService();
 
 const App = () => {
     return (

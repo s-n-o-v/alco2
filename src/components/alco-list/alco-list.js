@@ -3,14 +3,14 @@ import ErrorIndicator from '../error-indicator';
 import { connect } from 'react-redux';
 import { withAlcoService } from '../hoc';
 
-import { fetchItems } from '../../actions';
+import { itemsLoaded, itemsError, itemsRequested } from '../../actions';
 import AlcoListItem from '../alco-list-item';
 import Spinner from '../spinner';
 
 import './alco-list.css';
 
 
-const AlcoList = ({ items, onSelect }) => {
+const AlcoList = ({ items }) => {
     return (
         <div className="row">
             {
@@ -26,6 +26,7 @@ const AlcoList = ({ items, onSelect }) => {
 
 class AlcoListContainer extends Component {
     componentDidMount() {
+        console.log('requesting...');
         this.props.fetchItems();
     }
 
@@ -42,8 +43,8 @@ class AlcoListContainer extends Component {
     }
 }
 
-// export default AlcoList;
 const mapStateToProps = ({ items : { items, loading, error }}) => {
+    // console.log('items', items);
     return { items, loading, error };
 };
 
@@ -51,7 +52,17 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     const { alcoService } = ownProps;
 
     return {
-        fetchItems: fetchItems(alcoService, dispatch)
+        fetchItems: () => {
+            dispatch(itemsRequested());
+
+            alcoService.getItems(null)
+                .then((data) => {
+                    dispatch(itemsLoaded(data));
+                })
+                .catch(err => {
+                    dispatch(itemsError(err));
+                });
+        }
     };
 }
 
